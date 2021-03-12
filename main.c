@@ -16,6 +16,7 @@ int main( int argc, char **argv ){
 	int iteracje = 5;
 	char *ostatnia_generacja = NULL;
 	int zasady_gry = 0;
+	char *progname = argv[0];
 
 	while( (opt = getopt(argc, argv, "d:i:g:z")) != -1 ){
 		switch(opt){
@@ -36,15 +37,15 @@ int main( int argc, char **argv ){
 			break;
 
 			default:
-			fprintf(stderr, usage);
-			fprintf(stderr, opis);
+			fprintf(stderr, usage, progname);
+			fprintf(stderr,opis, progname);
 			exit(EXIT_FAILURE);
 			}
 	}
 
 	if(dane == NULL ){
-		fprintf(stderr, usage);
-		fprintf(stderr, opis);
+		fprintf(stderr, usage, progname);
+		fprintf(stderr, opis, progname);
 		exit(EXIT_FAILURE);
 	}
 	
