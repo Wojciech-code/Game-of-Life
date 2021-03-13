@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include "count.h"
 #include <getopt.h>
+#include "gifenc.h"
+#include "powieksz.h"
 
-char *usage = " Usage: ./gof -d dane -i ilość iteracji -g nazwa pliku dla ostatniej iteracji -z zmienia zasady gry na neumanna\n\n";
+char *usage = " Usage: ./gof -d dane -i ilość iteracji -g nazwa pliku dla ostatniej iteracji -z zmienia zasady gry na neumanna -f tworzy gifa\n\n";
 char *opis = "Jeśli plik z danymi nie jest podany program nie zacznie pracy\n"
 "Jeśli ilość iteracji nie będzie podana program domyśnie przyjmie 5\n"
 "Ostatnia generacja zostanie stworzona do pliku jeśli zostanie podana nazwa tego pliku\n"
@@ -17,8 +19,9 @@ int main( int argc, char **argv ){
 	char *ostatnia_generacja = NULL;
 	int zasady_gry = 0;
 	char *progname = argv[0];
+	int gif = 0;
 
-	while( (opt = getopt(argc, argv, "d:i:g:z")) != -1 ){
+	while( (opt = getopt(argc, argv, "d:i:g:zf")) != -1 ){
 		switch(opt){
 			case 'd':
 			dane = optarg;
@@ -35,6 +38,11 @@ int main( int argc, char **argv ){
 			case 'z':
 			zasady_gry = 1;
 			break;
+
+			case 'f':
+			gif = 1;
+			break;
+
 
 			default:
 			fprintf(stderr, usage, progname);
@@ -86,7 +94,25 @@ int main( int argc, char **argv ){
 		fprintf(y,"\n");
 	}
 
-	// int iteracje = argc > 2 ? atoi(argv[2]) : 3;
+	
+	int ile_razy = 200;
+	ge_GIF *plik_gif;
+	if( gif == 1 ){
+		   plik_gif = ge_new_gif(
+      		  "iteracje.gif",  /* file name */
+   		     N*ile_razy, M*ile_razy,           /* canvas size */
+        	    (uint8_t []) {  /* palette */
+            		0x00, 0x00, 0x00, /* 0 -> black */
+            		0xFF, 0x00, 0x00, /* 1 -> red */
+            		0x00, 0xFF, 0x00, /* 2 -> green */
+            		0x00, 0x00, 0xFF, /* 3 -> blue */
+        		},
+        	2,              /* palette depth == log2(# of colors) */
+        	0               /* infinite loop */
+   		 );
+	
+	}
+
 
 	for(int i = 0; i < iteracje; i++){
 	
@@ -136,8 +162,22 @@ int main( int argc, char **argv ){
 	}
 	
 
+	if( gif == 1 ){
+		int g = 0;
+		int **tab2 = powieksz(tab, ile_razy, N, M );
+
+		for(int i = 0; i < N*ile_razy; i++ ){
+			for(int j = 0; j < M *ile_razy; j++ ){
+				plik_gif->frame[g++] = tab2[i][j];
+			}
+		}
+
+		ge_add_frame(plik_gif, 50);
+
 	}
 
+	
+	}
 	//Zapisujemy generacje po ostatniej iteracji do pliku podanego przez użytkownika
 	// tylko jeśli nazwa pliku zostanie podana
 	if( ostatnia_generacja != NULL ) {
@@ -152,6 +192,11 @@ int main( int argc, char **argv ){
 			fprintf(z,"\n");
 		}
 	}
+
+	if( gif == 1 ){
+		ge_close_gif(plik_gif);
+	}
+
 
 	return 0;
 }
