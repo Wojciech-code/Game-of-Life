@@ -1,5 +1,5 @@
-gof: main.o count_moora.o count_neumanna.o gifenc.o powieksz.o
-	$(CC) -o gof main.o count_moora.o count_neumanna.o gifenc.o powieksz.o
+gof: main.o count_moora.o count_neumanna.o gifenc.o powieksz.o funkcje.o help.o
+	$(CC) -o gof main.o count_moora.o count_neumanna.o gifenc.o powieksz.o funkcje.o help.o
 	-rm *.o
 
 count_moora.o: count.h
@@ -13,6 +13,12 @@ gifenc.o: gifenc.h
 
 powieksz.o: powieksz.h
 	$(CC) -c powieksz.c
+
+funkcje.o: funkcje.h
+	$(CC) -c funkcje.c
+
+help.o: help.h
+	$(CC) -c help.c
 
 clean:
 	-rm *.pbm gof iteracje.gif
