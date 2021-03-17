@@ -99,6 +99,7 @@ int main( int argc, char **argv ){
 	
 	}
 
+	//przechodzimy po iteracjach
 	for(int i = 0; i < iteracje; i++){
 	
 	//aktaualizuje otoczenie
@@ -107,30 +108,20 @@ int main( int argc, char **argv ){
 	//Naprawiamy tablice
 	fix(N,M,tab);
 
-
 	//tworzymy pliki .pbm
 	make_pbm(N,M,tab,i); 
 	
 	//gif
 	if( gif == 1 ){
-		int g = 0;
-		int **tab2 = powieksz(tab, ile_razy, N, M );
-
-		for(int i = 0; i < N*ile_razy; i++ ){
-			for(int j = 0; j < M *ile_razy; j++ ){
-				plik_gif->frame[g++] = tab2[i][j];
-			}
-		}
-
-		ge_add_frame(plik_gif, 50);
-
+	//powieksza tabelke, zapisujemy do bufora
+	//wykorzystuje funkcje ge_add
+	powiekszIgif(plik_gif, N, M, ile_razy,tab);
+	}
 	}
 
-	
-	}
-
-	//Zapisujemy generacje po ostatniej iteracji do pliku podanego przez użytkownika
-	// tylko jeśli nazwa pliku zostanie podana
+	//Zapisujemy generacje po ostatniej iteracji
+	//do pliku podanego przez użytkownika
+	//tylko jeśli nazwa pliku zostanie podana
 	save( ostatnia_generacja, N, M, tab);
 	
 	//gif
