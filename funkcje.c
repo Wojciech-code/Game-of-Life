@@ -16,6 +16,7 @@
 		}
  			fprintf(y,"\n");
 		}
+		fclose(y);
 };
 
 //Naprawiamy tablicę
@@ -68,9 +69,12 @@ void make_pbm(int N,int M, int **tab,int i){
 		}
 		 	fprintf(x,"\n");
 		}
+		fclose(x);
 };
 
-//zapisujemy oststnia iteracje
+ //Zapisujemy generacje po ostatniej iteracji
+ //do pliku podanego przez użytkownika
+ //tylko jeśli nazwa pliku zostanie podana
 void save(char *ostatnia_generacja, int N, int M, int **tab){
     if( ostatnia_generacja != NULL ) {
 
@@ -83,10 +87,24 @@ void save(char *ostatnia_generacja, int N, int M, int **tab){
 		}
 			 fprintf(z,"\n");
 		}
+
+		fclose(z);
     }
 };
 
- //Zapisujemy generacje po ostatniej iteracji                                                                             //do pliku podanego przez użytkownika                                                                                    //tylko jeśli nazwa pliku zostanie podana
+void zwolnij_pamiec(int N, int M, int **tab ){
+
+	for(int i = 0; i < N; i++ ){
+		free( tab[i] );
+	}
+
+	free(tab);
+}
+
+
+//w pierwszym kroku funkcją powieksz() powiększamy obrazek ile_razy
+//następnie w pętlach uzupełniamy ramkę-bufor 
+//dodajemy ramkę funckją ge_add_frame() do gifa
 void powiekszIgif(ge_GIF *plik_gif, int N, int M, int ile_razy, int **tab){
 	int g = 0;
 	int **tab2 = powieksz(tab, ile_razy, N, M );
@@ -96,5 +114,7 @@ void powiekszIgif(ge_GIF *plik_gif, int N, int M, int ile_razy, int **tab){
 		}
 		}
 	ge_add_frame(plik_gif, 50);
+	zwolnij_pamiec(N*ile_razy, M*ile_razy, tab2);
 };
+
 

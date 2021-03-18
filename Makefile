@@ -21,4 +21,4 @@ help.o: help.h
 	$(CC) -c help.c
 
 clean:
-	-rm zapis/*.pbm gof zapis/iteracje.gif
+	-rm *zapis.pbm gof zapis/iteracje.gif *.o

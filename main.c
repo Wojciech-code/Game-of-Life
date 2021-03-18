@@ -75,6 +75,8 @@ int main( int argc, char **argv ){
 			tab[i][j] = x;
 		}
 	}
+
+	fclose(in);
 	
 
 	//Zapisujemy bierzącą generacje w pliku .pbm	
@@ -129,6 +131,8 @@ int main( int argc, char **argv ){
 		ge_close_gif(plik_gif);
 	}
 
+
+	zwolnij_pamiec(N, M, tab);
 
 	return 0;
 }
