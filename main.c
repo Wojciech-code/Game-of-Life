@@ -130,5 +130,8 @@ int main( int argc, char **argv ){
 	}
 
 
+	zwolnij_pamiec(N, M, tab);
+	fclose(in);
+
 	return 0;
 }
