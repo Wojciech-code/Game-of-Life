@@ -8,7 +8,7 @@
 
  //Zapisujemy bierzącą generacje w pliku .pbm
  void save_pbm(int N, int M,int **tab){
-	FILE *y = fopen("0.pbm", "w");
+	FILE *y = fopen("zapis/0.pbm", "w");
  	fprintf(y, "P1\n%d %d\n", N ,M);
 		for( int i = 0; i < N; i++ ){
 		for(int j = 0; j < M; j++){
@@ -58,7 +58,7 @@ void update(int N, int M, int **tab,int how_to_count_neigh){
 //tworzymy pliki pbm
 void make_pbm(int N,int M, int **tab,int i){
 	char nazwa_pliku[1000];
-	sprintf(nazwa_pliku, "%d.pbm", i+1);
+	sprintf(nazwa_pliku, "zapis/%d.pbm", i+1);
 	FILE *x = fopen(nazwa_pliku, "w");
 	fprintf(x, "P1\n%d %d\n", N ,M);
 
@@ -74,7 +74,7 @@ void make_pbm(int N,int M, int **tab,int i){
 void save(char *ostatnia_generacja, int N, int M, int **tab){
     if( ostatnia_generacja != NULL ) {
 
-	FILE *z = fopen(ostatnia_generacja, "w");
+	FILE *z = fopen("zapis/ostatnia_generacja", "w");
 	fprintf(z, "%d %d\n", N ,M);
 
 		for( int i = 0; i < N; i++ ){

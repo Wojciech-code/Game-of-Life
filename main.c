@@ -85,7 +85,7 @@ int main( int argc, char **argv ){
 	ge_GIF *plik_gif;
 	if( gif == 1 ){
 		   plik_gif = ge_new_gif(
-      		  "iteracje.gif",  /* file name */
+      		  "zapis/iteracje.gif",  /* file name */
    		     N*ile_razy, M*ile_razy,           /* canvas size */
         	    (uint8_t []) {  /* palette */
             		0x00, 0x00, 0x00, /* 0 -> black */
