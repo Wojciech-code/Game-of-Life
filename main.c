@@ -75,6 +75,8 @@ int main( int argc, char **argv ){
 			tab[i][j] = x;
 		}
 	}
+
+	fclose(in);
 	
 
 	//Zapisujemy bierzącą generacje w pliku .pbm	
@@ -131,7 +133,6 @@ int main( int argc, char **argv ){
 
 
 	zwolnij_pamiec(N, M, tab);
-	fclose(in);
 
 	return 0;
 }

@@ -92,6 +92,16 @@ void save(char *ostatnia_generacja, int N, int M, int **tab){
     }
 };
 
+void zwolnij_pamiec(int N, int M, int **tab ){
+
+	for(int i = 0; i < N; i++ ){
+		free( tab[i] );
+	}
+
+	free(tab);
+}
+
+
 //w pierwszym kroku funkcją powieksz() powiększamy obrazek ile_razy
 //następnie w pętlach uzupełniamy ramkę-bufor 
 //dodajemy ramkę funckją ge_add_frame() do gifa
@@ -104,14 +114,7 @@ void powiekszIgif(ge_GIF *plik_gif, int N, int M, int ile_razy, int **tab){
 		}
 		}
 	ge_add_frame(plik_gif, 50);
+	zwolnij_pamiec(N*ile_razy, M*ile_razy, tab2);
 };
 
-void zwolnij_pamiec(int N, int M, int **tab ){
-
-	for(int i = 0; i < N; i++ ){
-		free( tab[i] );
-	}
-
-	free(tab);
-}
 

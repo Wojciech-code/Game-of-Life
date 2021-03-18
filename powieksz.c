@@ -1,5 +1,6 @@
 #include "powieksz.h"
 #include <stdlib.h>
+#include "funkcje.h"
 
 int **powieksz(int **tab, int x, int N, int M){
 
@@ -44,43 +45,4 @@ for(int g = 0; g < x; g++ ){
 
 return tab2;
 }
-
-#ifdef TEST
-
-#include <stdio.h>
-
-int main(){
-
-	int **tab = malloc( 3 * sizeof( int * ) );
-
-	for(int i = 0; i < 3; i++){
-		tab[i] = malloc( 3 * sizeof( int ));
-	}
-
-	
-
-	int y = 0;
-	int x = 3;
-
-	for(int i = 0; i < 3; i++){
-		for(int j = 0; j < 3; j++ ){
-			tab[i][j] = y++;
-		}
-	}
-
-	int **tab2 = powieksz(tab, x, 3, 3);
-
-		
-for(int j = 0; j < 3*x; j++ ){
-	for(int i = 0; i < 3*x; i++){
-		printf("%d ", tab2[j][i]);
-			}
-	printf("\n");
-}
-
-
-}
-
-
-#endif
 
