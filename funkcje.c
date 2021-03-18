@@ -73,10 +73,7 @@ void make_pbm(int N,int M, int **tab,int i){
 };
 
  //Zapisujemy generacje po ostatniej iteracji
- //do pliku podanego przez użytkownika
- //tylko jeśli nazwa pliku zostanie podana
-void save(char *ostatnia_generacja, int N, int M, int **tab){
-    if( ostatnia_generacja != NULL ) {
+void save(int N, int M, int **tab){
 
 	FILE *z = fopen("zapis/ostatnia_generacja", "w");
 	fprintf(z, "%d %d\n", N ,M);
@@ -89,8 +86,8 @@ void save(char *ostatnia_generacja, int N, int M, int **tab){
 		}
 
 		fclose(z);
-    }
 };
+
 
 void zwolnij_pamiec(int N, int M, int **tab ){
 

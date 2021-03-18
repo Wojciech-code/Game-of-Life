@@ -1,6 +1,7 @@
 gof: main.o count_moora.o count_neumanna.o gifenc.o powieksz.o funkcje.o help.o
 	$(CC) -o gof main.o count_moora.o count_neumanna.o gifenc.o powieksz.o funkcje.o help.o
 	-rm *.o
+	-mkdir zapis
 
 count_moora.o: count.h
 	$(CC) -c count_moora.c
@@ -21,4 +22,4 @@ help.o: help.h
 	$(CC) -c help.c
 
 clean:
-	-rm *zapis.pbm gof zapis/iteracje.gif *.o
+	-rm zapis/*

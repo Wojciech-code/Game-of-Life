@@ -12,12 +12,12 @@ int main( int argc, char **argv ){
 	int opt;
 	char *dane = NULL;
 	int iteracje = 5;
-	char *ostatnia_generacja = NULL;
+	int ostatnia_generacja = 0;
 	int how_to_count_neigh = 0;
 	char *progname = argv[0];
 	int gif = 0;
 
-	while( (opt = getopt(argc, argv, "d:i:g:zf")) != -1 ){
+	while( (opt = getopt(argc, argv, "d:i:gzf")) != -1 ){
 		switch(opt){
 			case 'd':
 			dane = optarg;
@@ -28,7 +28,7 @@ int main( int argc, char **argv ){
 			break;
 
 			case 'g':
-			ostatnia_generacja = optarg;
+			ostatnia_generacja = 1;
 			break;
 
 			case 'z':
@@ -122,10 +122,11 @@ int main( int argc, char **argv ){
 	}
 
 	//Zapisujemy generacje po ostatniej iteracji
-	//do pliku podanego przez użytkownika
-	//tylko jeśli nazwa pliku zostanie podana
-	save( ostatnia_generacja, N, M, tab);
-	
+	//jeśli -g
+	if(ostatnia_generacja == 1 ){
+		save(N, M, tab);
+	}
+
 	//gif
 	if( gif == 1 ){
 		ge_close_gif(plik_gif);

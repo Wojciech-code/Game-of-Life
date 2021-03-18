@@ -7,6 +7,6 @@ void fix(int N, int M, int **tab);
 void update(int N, int M, int **tab, int how_to_count_neigh);
 void make_pbm(int N,int M, int **tab,int i);
 void save_pbm(int N, int M,int **tab);
-void save(char *ostatnia_generacja, int N, int M, int **tab);
+void save(int N, int M, int **tab);
 void powiekszIgif(ge_GIF *plik_gif, int N, int M, int ile_razy, int **tab);
 void zwolnij_pamiec(int N, int M, int **tab);
