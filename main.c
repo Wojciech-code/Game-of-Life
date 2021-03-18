@@ -13,7 +13,7 @@ int main( int argc, char **argv ){
 	char *dane = NULL;
 	int iteracje = 5;
 	char *ostatnia_generacja = NULL;
-	int zasady_gry = 0;
+	int how_to_count_neigh = 0;
 	char *progname = argv[0];
 	int gif = 0;
 
@@ -32,7 +32,7 @@ int main( int argc, char **argv ){
 			break;
 
 			case 'z':
-			zasady_gry = 1;
+			how_to_count_neigh = 1;
 			break;
 
 			case 'f':
@@ -103,7 +103,7 @@ int main( int argc, char **argv ){
 	for(int i = 0; i < iteracje; i++){
 	
 	//aktaualizuje otoczenie
-	update(N, M, tab, zasady_gry); 
+	update(N, M, tab, how_to_count_neigh); 
 	
 	//Naprawiamy tablice
 	fix(N,M,tab);

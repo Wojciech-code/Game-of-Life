@@ -29,16 +29,16 @@ void fix(int N, int M, int **tab){
 };
 
 //aktualizujemy swiat
-void update(int N, int M, int **tab,int zasady_gry){
+void update(int N, int M, int **tab,int how_to_count_neigh){
         for( int i = 0; i < N; i++ ){
 	for(int j = 0; j < M; j++ ) {
 	int otoczenie_zywych;
 
-		if( zasady_gry == 0 ){
+		if( how_to_count_neigh == 0 ){
 		otoczenie_zywych = count_moora( N, M, tab, i, j );
 			 }
 		
-		if( zasady_gry == 1 ){
+		if( how_to_count_neigh == 1 ){
 			otoczenie_zywych = count_neumanna( N, M, tab, i, j );
 		}
 
