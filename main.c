@@ -11,7 +11,7 @@ int main( int argc, char **argv ){
 
 	int opt;
 	char *dane = NULL;
-	int iteracje = 5;
+	int iteracje = 20;
 	int ostatnia_generacja = 0;
 	int how_to_count_neigh = 0;
 	char *progname = argv[0];
@@ -83,17 +83,17 @@ int main( int argc, char **argv ){
 	save_pbm(N,M,tab);
 	
 	//gif
-	int ile_razy = 200;
+	int ile_razy = N >= M ? 750/N: 750/M;
 	ge_GIF *plik_gif;
 	if( gif == 1 ){
 		   plik_gif = ge_new_gif(
       		  "zapis/iteracje.gif",  /* file name */
    		     N*ile_razy, M*ile_razy,           /* canvas size */
         	    (uint8_t []) {  /* palette */
-            		0x00, 0x00, 0x00, /* 0 -> black */
-            		0xFF, 0x00, 0x00, /* 1 -> red */
+            		0xFF, 0xFF, 0xFF, /* 0 -> white */
+            		0x00, 0x00, 0xFF, /* 1 -> blue */
             		0x00, 0xFF, 0x00, /* 2 -> green */
-            		0x00, 0x00, 0xFF, /* 3 -> blue */
+            		0xFF, 0x00, 0x00, /* 3 -> red */
         		},
         	2,              /* palette depth == log2(# of colors) */
         	0               /* infinite loop */
