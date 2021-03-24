@@ -3,6 +3,6 @@
 
 #include "powieksz.h"
 
-	int **powieksz(int **tab, int x, int N, int M);		
+	int **powieksz(int **tab, int ile_razy, int N, int M);		
 
 #endif

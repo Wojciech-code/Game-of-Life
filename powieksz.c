@@ -2,46 +2,55 @@
 #include <stdlib.h>
 #include "funkcje.h"
 
-int **powieksz(int **tab, int x, int N, int M){
+/* jest wykorzystywana w funkcji powiekszIgif()
+ * zadaniem funkcji jest powiększenie tablicy w taki sposób,
+ * aby ta potem generowała większe obrazki,
+ * każdy "wyraz" w tabeli zamienia na kwadracik
+ * przykład działania dla ile_razy = 2
+ * przyjmuje: 1 2 3 
+ *            4 5 6 
+ * zwraca: 1 1 2 2 3 3 
+ *         1 1 2 2 3 3 
+ *         4 4 5 5 6 6
+ *         4 4 5 5 6 6  
+ */
+int **powieksz(int **tab, int ile_razy, int N, int M){
 
-int **tab2 = malloc( N * x * sizeof( int * ) );
+	int **tab2 = malloc( N * ile_razy * sizeof( int * ) );
 
-	for(int j = 0; j < N * x; j++ ){
-		tab2[j] = malloc( M * x * sizeof( int ) );
+	for(int j = 0; j < N * ile_razy; j++ ){
+		tab2[j] = malloc( M * ile_razy * sizeof( int ) );
 	}
 
 
-int buf[x*M];
+	int buf[ile_razy*M];
 
-int z = 0;
+	int z = 0;
+
+	//iteruj po wierszach
+	for(int w = 0; w < N; w++ ){
 
 
-//iteruj po wierszach
-for(int w = 0; w < N; w++ ){
-
-
-//zapisz 'w' wiersz w buf x razy kazdy wyraz
-for(int i = 0; i < M; i++ ){
-	int y = tab[w][i];
+	//zapisz 'w' wiersz w buf ile_razy kazdy wyraz tego wiersza
+	for(int i = 0; i < M; i++ ){
+		int y = tab[w][i];
 	
 		for(int v = 0; v < x; v++ ){
-			buf[z++] = y;
+		buf[z++] = y;
 		}
-
-}
-
-z = 0;
+	}
+	z = 0;
 
 
-//przepisz 'w' wiersz z buff do tab2 x razy
-for(int g = 0; g < x; g++ ){
-	for(int f = 0; f < x*M; f++){
-			tab2[(w*x) +g][f] = buf[f];
+	//przepisz 'w' wiersz z buff do tab2 x razy
+	for(int j = 0; j < ile_razy; j++ ){
+		for(int i = 0; i < ile_razy*M; i++){
+			tab2[(w*ile_razy) +j][f] = buf[i];
 			}
 	}
 
 
-}
+	}
 
 return tab2;
 }
