@@ -35,7 +35,7 @@ int **powieksz(int **tab, int ile_razy, int N, int M){
 	for(int i = 0; i < M; i++ ){
 		int y = tab[w][i];
 	
-		for(int v = 0; v < x; v++ ){
+		for(int v = 0; v < ile_razy; v++ ){
 		buf[z++] = y;
 		}
 	}
@@ -45,7 +45,7 @@ int **powieksz(int **tab, int ile_razy, int N, int M){
 	//przepisz 'w' wiersz z buff do tab2 x razy
 	for(int j = 0; j < ile_razy; j++ ){
 		for(int i = 0; i < ile_razy*M; i++){
-			tab2[(w*ile_razy) +j][f] = buf[i];
+			tab2[(w*ile_razy) +j][i] = buf[i];
 			}
 	}
 
